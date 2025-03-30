@@ -16,6 +16,7 @@ const VoiceInput = ({ className }: VoiceInputProps) => {
   
   // Speech recognition setup
   useEffect(() => {
+    // Use the global window object with our extended type definitions
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     
     if (!SpeechRecognition) {
