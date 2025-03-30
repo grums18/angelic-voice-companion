@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { saveSignUpEntry } from "@/utils/authStorage";
 
 interface SignUpDialogProps {
   open: boolean;
@@ -27,6 +28,13 @@ export function SignUpDialog({ open, onOpenChange }: SignUpDialogProps) {
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
+    // Save the sign up data to local storage
+    saveSignUpEntry({
+      name,
+      email,
+      timestamp: new Date().toISOString()
+    });
 
     // Simulate sign up
     setTimeout(() => {

@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { saveSignInEntry } from "@/utils/authStorage";
 
 interface SignInDialogProps {
   open: boolean;
@@ -26,6 +27,12 @@ export function SignInDialog({ open, onOpenChange }: SignInDialogProps) {
   const handleSignIn = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
+    // Save the sign in data to local storage
+    saveSignInEntry({
+      email,
+      timestamp: new Date().toISOString()
+    });
 
     // Simulate sign in
     setTimeout(() => {
